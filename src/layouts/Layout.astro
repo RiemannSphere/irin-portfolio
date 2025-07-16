@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="A tiny project" />
+        <title>Hexe Irin Portfolio</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <slot />
+        <style is:global>
+            :root {
+				/* Color Palette */
+				--color-palette-prussian-dark:  #001C2F; /* deepest base, almost black-blue */
+				--color-palette-prussian:       #003B64; /* your core Prussian blue */
+				--color-palette-ice-blue:       #AAC7E0; /* frosty mid‑tone */
+				--color-palette-snow:           #F7FAFC; /* bright, clean background */
+				--color-palette-silver:         #C0C6CC; /* muted neutral */
+				--color-palette-charcoal:       #2E3A46; /* dark text alternative */
+				--color-palette-teal-accent:    #4CB5AE; /* subtle pop, like thin ice */
+
+				/* Semantic Colors */
+				--color-bg:            var(--color-palette-snow);
+				--color-bg-reverse:    var(--color-palette-charcoal);
+				--color-text:          var(--color-palette-charcoal);
+				--color-text-reverse:  var(--color-palette-snow);
+				--color-primary:       var(--color-palette-prussian);
+				--color-secondary:     var(--color-palette-ice-blue);
+				--color-accent:        var(--color-palette-teal-accent);
+				--color-muted:         var(--color-palette-silver);
+
+
+                /* Typography */
+                --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+                --font-size-base: 1rem;
+                --line-height-base: 1.6;
+                --font-weight-base: 400;
+                --font-weight-bold: 600;
+
+                /* Spacing */
+                --sp: 1rem;
+                --sp-2: 2rem;
+                --sp-3: 3rem;
+                --sp-4: 4rem;
+                --sp-8: 8rem;
+                --sp-0-8: 0.8rem;
+                --sp-0-5: 0.5rem;
+                --sp-0-25: 0.25rem;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box; 
+                font-family: var(--font-sans);
+                font-size: var(--font-size-base);
+                line-height: var(--line-height-base);
+                font-weight: var(--font-weight-base);
+                color: var(--color-text);
+                background-color: var(--color-bg);
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: inherit;
+            }
+
+            /* Basic typography */
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin: 0 0 var(--sp-0-25) 0;
+                line-height: 1.2;
+                font-weight: var(--font-weight-bold);
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            h3 {
+                font-size: 1.75rem;
+            }
+            h4 {
+                font-size: 1.5rem;
+            }
+            h5 {
+                font-size: 1.25rem;
+            }
+            h6 {
+                font-size: var(--font-size-base);
+            }
+
+            p {
+                margin: 0 0 var(--sp-0-25) 0;
+            }
+
+            a {
+                color: var(--color-primary);
+                text-decoration: none;
+                transition: opacity 0.2s ease;
+            }
+
+            a:hover {
+                opacity: 0.8;
+            }
+
+            /* Code blocks */
+            pre,
+            code {
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+                    Consolas, monospace;
+                border-radius: 6px;
+                background: var(--color-code-bg);
+                color: var(--color-code-text);
+            }
+
+            code:not(pre code) {
+                padding: 0 var(--sp-0-5);
+            }
+
+            pre {
+                border-left: 4px solid var(--color-accent);
+                padding: var(--sp);
+                overflow-x: auto;
+            }
+        </style>
+    </body>
+</html>

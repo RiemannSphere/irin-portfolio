@@ -1,0 +1,62 @@
+---
+    const { title, image, medium, dimensions, year } = Astro.props;
+---
+
+<div class="card">
+    <img src={image} alt={title} class="card-image" />
+    <div class="card-content">
+        <h3 class="card-title">{title}</h3>
+        <p class="card-medium">
+            {medium} • {dimensions}
+        </p>
+        <p class="card-year">{year}</p>
+    </div>
+</div>
+
+<style>
+    .card {
+        padding: var(--sp-2);
+        background-color: var(--color-bg);
+        border-radius: 8px;
+        box-shadow: 0 0 10px 0 var(--color-muted);
+        transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        border: 2px solid transparent;
+        cursor: pointer;
+    }
+
+    .card-image {
+        width: 100%;
+        aspect-ratio: 1.618;
+        object-fit: contain;
+        margin-bottom: var(--sp);
+    }
+
+    .card-content {
+        padding-top: var(--sp);
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-0-5);
+    }
+
+    .card-title {
+        font-size: var(--sp);
+        font-weight: 600;
+        color: var(--color-text);
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .card-medium {
+        font-size: var(--sp-0-8);
+        color: var(--color-text);
+        opacity: 0.7;
+        margin: 0;
+    }
+
+    .card-year {
+        font-size: var(--sp-0-8);
+        color: var(--color-text);
+        opacity: 0.6;
+        margin: 0;
+    }
+</style>

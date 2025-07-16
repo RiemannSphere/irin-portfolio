@@ -1,0 +1,63 @@
+<section class="about">
+    <h2 class="about-title">About</h2>
+    <div class="about-content">
+        <p>
+            Roza Wadowska is a passionate printmaker and watercolor artist based in [Location]. 
+            Her work explores the delicate balance between traditional printmaking techniques and 
+            contemporary watercolor methods, creating pieces that bridge the gap between classical 
+            and modern artistic expression.
+        </p>
+        <p>
+            With a deep appreciation for the natural world, Roza's art often draws inspiration 
+            from organic forms, seasonal changes, and the subtle interplay of light and shadow. 
+            Her prints and watercolors capture moments of quiet beauty, inviting viewers to 
+            pause and reflect on the world around them.
+        </p>
+    </div>
+    <div class="about-divider"></div>
+</section>
+
+<style>
+    .about {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--sp);
+        background: linear-gradient(to top, color-mix(in srgb, var(--color-palette-silver) 10%, var(--color-palette-snow)), var(--color-palette-snow));
+    }
+
+    .about-title {
+        font-weight: 600;
+        font-size: var(--sp-2);
+        letter-spacing: 1px;
+        color: var(--color-text);
+        text-align: center;
+        margin: 0;
+    }
+
+    .about-content {
+        max-width: 500px;
+        text-align: center;
+        font-size: var(--sp-1);
+        color: var(--color-text);
+    }
+
+    .about-content p {
+        margin-bottom: var(--sp);
+    }
+
+    .about-content p:last-child {
+        margin-bottom: 0;
+    }
+
+    .about-divider {
+        width: 100%;
+        height: var(--sp-0-25);
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            var(--color-palette-prussian) 50%, 
+            transparent 100%);
+        opacity: 0.2;
+    }
+</style>
