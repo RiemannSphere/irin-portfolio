@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "deploy:local": "npx wrangler pages dev ./dist",
+    "deploy:prod": "npx wrangler pages deploy ./dist"
   },
   "dependencies": {
     "astro": "^5.11.1"
