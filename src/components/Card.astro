@@ -7,15 +7,14 @@
     <div class="card-content">
         <h3 class="card-title">{title}</h3>
         <p class="card-medium">
-            {medium} • {dimensions}
+            {medium} • {dimensions} • {year}
         </p>
-        <p class="card-year">{year}</p>
     </div>
 </div>
 
 <style>
     .card {
-        padding: var(--sp-2);
+        padding: var(--sp);
         background-color: var(--color-bg);
         border-radius: 8px;
         box-shadow: 0 0 10px 0 var(--color-muted);
@@ -26,16 +25,15 @@
 
     .card-image {
         width: 100%;
+        min-width: 250px;
+        margin: auto;
         aspect-ratio: 1.618;
         object-fit: contain;
-        margin-bottom: var(--sp);
     }
 
     .card-content {
-        padding-top: var(--sp);
         display: flex;
         flex-direction: column;
-        gap: var(--sp-0-5);
     }
 
     .card-title {
@@ -50,13 +48,6 @@
         font-size: var(--sp-0-8);
         color: var(--color-text);
         opacity: 0.7;
-        margin: 0;
-    }
-
-    .card-year {
-        font-size: var(--sp-0-8);
-        color: var(--color-text);
-        opacity: 0.6;
         margin: 0;
     }
 </style>

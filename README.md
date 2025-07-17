@@ -11,4 +11,6 @@ https://hexe-irin.com/
 | `npm run deploy:local`    | Deploy to the localhost                          |
 | `npm run deploy:prod`     | Deploy to the production environment             |
 
+Repo: https://github.com/RiemannSphere/irin-portfolio
+
 
