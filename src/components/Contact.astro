@@ -1,0 +1,138 @@
+<div class="contact-divider"></div>
+<div class="contact">
+    <div class="contact-title">Get in Touch</div>
+    
+    <div class="contact-content">
+        <div class="contact-info">
+            <div class="contact-details">
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram-icon lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </span>
+                    <a href="https://www.instagram.com/hexe_irin/" target="_blank" rel="noopener noreferrer" class="contact-text contact-link">@hexe_irin</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                    </span>
+                    <span class="contact-text">elena.rodriguez@email.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                    </span>
+                    <span class="contact-text">Hamburg, Germany</span>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    
+    <div class="contact-copyright">© 2025 Irin. All rights reserved.</div>
+</div>
+
+<style>
+    .contact {
+        width: 100%;
+        padding: var(--sp-2) 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--sp);
+
+        background: var(--color-palette-prussian);
+    }
+
+    .contact-title {
+        padding-left: var(--sp);
+        font-weight: 700;
+        font-size: var(--sp-2);
+        letter-spacing: 1px;
+        background: linear-gradient(90deg, var(--color-palette-silver), var(--color-palette-ice-blue));
+        background-size: cover;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .contact-content {
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        justify-content: center;
+        padding: 0 var(--sp);
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-2);
+    }
+
+
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp);
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--sp-0-5);
+    }
+
+    @media (min-width: 768px) {
+        .contact-details {
+            flex-direction: row;
+            justify-content: center;
+            gap: var(--sp-2);
+        }
+        
+        .contact-item {
+            justify-content: center;
+        }
+    }
+
+    .contact-icon {
+        font-size: var(--sp-0-8);
+        color: var(--color-palette-teal-accent);
+    }
+
+    .contact-text {
+        font-size: var(--sp-0-8);
+        font-weight: 500;
+        color: var(--color-palette-ice-blue);
+    }
+
+    .contact-link {
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .contact-link:hover {
+        color: var(--color-palette-teal-accent);
+    }
+
+
+
+    .contact-divider {
+        width: 100%;
+        height: var(--sp-0-25);
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            var(--color-palette-prussian) 50%, 
+            transparent 100%);
+        opacity: 0.2;
+    }
+
+    .contact-copyright {
+        font-size: var(--sp-0-8);
+        color: var(--color-text-reverse);
+    }
+</style>
