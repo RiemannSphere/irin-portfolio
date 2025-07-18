@@ -1,17 +1,100 @@
 ---
 import Card from "../components/Card.astro";
+
+// Define the gallery data
+const galleryItems = [
+    { title: "Golden Cat", image: "https://hexe-irin.com/Irin_Golden_Cat_A5_40.webp", medium: "Acrylics on paper", dimensions: "A5", year: "2022" },
+    { title: "Psychedelic Pigeon", image: "https://hexe-irin.com/Irin_Psychedelic_Pigeon_10x15_30.webp", medium: "Acrylic markers on wood board", dimensions: "10x15 cm", year: "2023" },
+    { title: "Chic Cat", image: "https://hexe-irin.com/Irin_Chic_Cat_10x15_30.webp", medium: "Acrylics and acrylic markers on canvas board", dimensions: "10x15 cm", year: "2022" },
+    { title: "Baby Phoenix", image: "https://hexe-irin.com/Irin_Baby_Phoenix_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "Jelly Fish", image: "https://hexe-irin.com/Irin_Jelly_Fish_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "Scarabs", image: "https://hexe-irin.com/Irin_Scarabs_8x10_15.webp", medium: "Acrylic markers on canvas board", dimensions: "8x10 cm", year: "2022" },
+    { title: "Rooster", image: "https://hexe-irin.com/Irin_Rooster_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "Pumpkins", image: "https://hexe-irin.com/Irin_Pumpkins_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "City Pigeon", image: "https://hexe-irin.com/Irin_City_Pigeon_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "Koi", image: "https://hexe-irin.com/Irin_Koi_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" }
+];
 ---
 
-<div class="gallery">
+<div class="gallery" id="gallery">
     <div class="gallery-title">Gallery</div>
-    <div class="gallery-images">
-        <Card title="Gallery Image 1" image="https://hexe-irin.com/art1.webp" medium="Watercolor" dimensions="10x10" year="2025" />
-        <Card title="Gallery Image 2" image="https://hexe-irin.com/art2.webp" medium="Watercolor" dimensions="10x10" year="2025" />
-        <Card title="Gallery Image 3" image="https://hexe-irin.com/art3.webp" medium="Watercolor" dimensions="10x10" year="2025" />
-        <Card title="Gallery Image 4" image="https://hexe-irin.com/art4.webp" medium="Watercolor" dimensions="10x10" year="2025" />
-        <Card title="Gallery Image 5" image="https://hexe-irin.com/art5.webp" medium="Watercolor" dimensions="10x10" year="2025" />
+    
+    <!-- Loading spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Loading gallery...</p>
+    </div>
+    
+    <!-- Gallery content (hidden initially) -->
+    <div class="gallery-images" id="galleryImages" style="display: none;">
+        {galleryItems.map(item => (
+            <Card 
+                title={item.title} 
+                image={item.image} 
+                medium={item.medium} 
+                dimensions={item.dimensions} 
+                year={item.year} 
+            />
+        ))}
     </div>
 </div>
+
+<script>
+    // Preload all images and show gallery when ready
+    function preloadImages() {
+        const imageUrls = [
+            "https://hexe-irin.com/Irin_Golden_Cat_A5_40.webp",
+            "https://hexe-irin.com/Irin_Psychedelic_Pigeon_10x15_30.webp",
+            "https://hexe-irin.com/Irin_Chic_Cat_10x15_30.webp",
+            "https://hexe-irin.com/Irin_Baby_Phoenix_10x10_25.webp",
+            "https://hexe-irin.com/Irin_Jelly_Fish_10x10_25.webp",
+            "https://hexe-irin.com/Irin_Scarabs_8x10_15.webp",
+            "https://hexe-irin.com/Irin_Rooster_10x10_25.webp",
+            "https://hexe-irin.com/Irin_Pumpkins_10x10_25.webp",
+            "https://hexe-irin.com/Irin_City_Pigeon_10x10_25.webp",
+            "https://hexe-irin.com/Irin_Koi_10x10_25.webp"
+        ];
+
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const galleryImages = document.getElementById('galleryImages');
+        
+        let loadedCount = 0;
+        const totalImages = imageUrls.length;
+
+        function onImageLoad() {
+            loadedCount++;
+            if (loadedCount === totalImages) {
+                // All images loaded, show gallery
+                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                if (galleryImages) galleryImages.style.display = 'grid';
+            }
+        }
+
+        function onImageError() {
+            loadedCount++;
+            if (loadedCount === totalImages) {
+                // All images processed (even if some failed), show gallery
+                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                if (galleryImages) galleryImages.style.display = 'grid';
+            }
+        }
+
+        // Preload each image
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.onload = onImageLoad;
+            img.onerror = onImageError;
+            img.src = url;
+        });
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', preloadImages);
+    } else {
+        preloadImages();
+    }
+</script>
 
 <style>
     .gallery {
@@ -38,5 +121,34 @@ import Card from "../components/Card.astro";
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: var(--sp-2);
         padding: var(--sp-2);
+    }
+
+    .loading-spinner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: var(--sp-4);
+        gap: var(--sp);
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid var(--color-muted);
+        border-top: 4px solid var(--color-text);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    .loading-spinner p {
+        color: var(--color-text);
+        margin: 0;
+        font-size: var(--sp);
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 </style>
