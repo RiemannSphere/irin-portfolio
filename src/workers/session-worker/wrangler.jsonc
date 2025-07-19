@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",  
+  "name": "session-worker",
+  "main": "session-worker.ts",
+  "compatibility_date": "2025-02-04",
+  "workers_dev": false,
+  "observability": {
+      "enabled": true
+  },
+  "route": {
+    "pattern": "hexe-irin.com/api/session",
+    "zone_name": "hexe-irin.com"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "526a8dea4c9e46f3a1e0ac4e08128cc8"
+    }
+  ]
+}

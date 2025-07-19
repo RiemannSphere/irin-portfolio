@@ -6,10 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "deploy:local": "npx wrangler pages dev ./dist",
-    "deploy:prod": "npx wrangler pages deploy ./dist"
+    "deploy:prod": "npx wrangler pages deploy ./dist",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
-    "astro": "^5.11.1"
+    "astro": "^5.11.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "wrangler": "^4.25.0"

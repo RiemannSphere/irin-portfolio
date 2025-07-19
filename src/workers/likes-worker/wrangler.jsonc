@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",  
+  "name": "likes-worker",
+  "main": "likes-worker.ts",
+  "compatibility_date": "2025-02-04",
+  "workers_dev": false,
+  "observability": {
+      "enabled": true
+  },
+  "route": {
+    "pattern": "hexe-irin.com/api/likes",
+    "zone_name": "hexe-irin.com"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "irin-portfolio",
+      "id": "526a8dea4c9e46f3a1e0ac4e08128cc8"
+    }
+  ]
+}
