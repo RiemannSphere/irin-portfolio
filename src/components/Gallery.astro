@@ -3,16 +3,16 @@ import Card from "../components/Card.astro";
 
 // Define the gallery data
 const galleryItems = [
-    { title: "Golden Cat", image: "https://r2.hexe-irin.com/Irin_Golden_Cat_A5_40.webp", medium: "Acrylics on paper", dimensions: "A5", year: "2022" },
-    { title: "Psychedelic Pigeon", image: "https://r2.hexe-irin.com/Irin_Psychedelic_Pigeon_10x15_30.webp", medium: "Acrylic markers on wood board", dimensions: "10x15 cm", year: "2023" },
-    { title: "Chic Cat", image: "https://r2.hexe-irin.com/Irin_Chic_Cat_10x15_30.webp", medium: "Acrylics and acrylic markers on canvas board", dimensions: "10x15 cm", year: "2022" },
-    { title: "Baby Phoenix", image: "https://r2.hexe-irin.com/Irin_Baby_Phoenix_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "Jelly Fish", image: "https://r2.hexe-irin.com/Irin_Jelly_Fish_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "Scarab", image: "https://r2.hexe-irin.com/Irin_Scarabs_8x10_15.webp", medium: "Acrylic markers on canvas board", dimensions: "8x10 cm", year: "2022" },
-    { title: "Rooster", image: "https://r2.hexe-irin.com/Irin_Rooster_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "Pumpkins", image: "https://r2.hexe-irin.com/Irin_Pumpkins_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "City Pigeon", image: "https://r2.hexe-irin.com/Irin_City_Pigeon_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "Koi", image: "https://r2.hexe-irin.com/Irin_Koi_10x10_25.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" }
+    { title: "Golden Cat", image: "https://r2.hexe-irin.com/Irin_Golden_Cat_A5_40.small.webp", medium: "Acrylics on paper", dimensions: "A5", year: "2022" },
+    { title: "Psychedelic Pigeon", image: "https://r2.hexe-irin.com/Irin_Psychedelic_Pigeon_10x15_30.small.webp", medium: "Acrylic markers on wood board", dimensions: "10x15 cm", year: "2023" },
+    { title: "Chic Cat", image: "https://r2.hexe-irin.com/Irin_Chic_Cat_10x15_30.small.webp", medium: "Acrylics and acrylic markers on canvas board", dimensions: "10x15 cm", year: "2022" },
+    { title: "Baby Phoenix", image: "https://r2.hexe-irin.com/Irin_Baby_Phoenix_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "Jelly Fish", image: "https://r2.hexe-irin.com/Irin_Jelly_Fish_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "Scarab", image: "https://r2.hexe-irin.com/Irin_Scarab_8x10_15.small.webp", medium: "Acrylic markers on canvas board", dimensions: "8x10 cm", year: "2022" },
+    { title: "Rooster", image: "https://r2.hexe-irin.com/Irin_Rooster_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "Pumpkins", image: "https://r2.hexe-irin.com/Irin_Pumpkins_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "City Pigeon", image: "https://r2.hexe-irin.com/Irin_City_Pigeon_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { title: "Koi", image: "https://r2.hexe-irin.com/Irin_Koi_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" }
 ];
 ---
 
@@ -88,7 +88,7 @@ const galleryItems = [
 
 <style>
     .gallery {
-        max-width: 900px;
+        max-width: 950px;
         margin: auto;
         display: flex;
         flex-direction: column;
@@ -111,6 +111,7 @@ const galleryItems = [
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: var(--sp-2);
         padding: var(--sp-2);
+        width: 100%;
     }
 
     .loading-spinner {
