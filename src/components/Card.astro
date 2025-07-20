@@ -1,15 +1,25 @@
 ---
-    const { title, image, medium, dimensions, year } = Astro.props;
+    const { id, title, image, medium, dimensions, year } = Astro.props;
 ---
 
 <div class="card">
-    <img src={image} alt={title} class="card-image" />
-    <div class="card-content">
-        <h3 class="card-title">{title}</h3>
-        <p class="card-medium">
-            <span>{medium}</span> • <span>{dimensions}</span> • <span>{year}</span>
-        </p>
+    <img id={id} src={image} alt={title} class="card-image" />
+
+    <div class="card-header">
+        <div class="card-info">
+            <h3 class="card-title">{title}</h3>
+            <p class="card-details">
+                <span>{medium}</span> • <span>{dimensions}</span> • <span>{year}</span>
+            </p>
+        </div>
+        <div class="card-like">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="like-icon">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+            <span class="like-counter">5</span>
+        </div>
     </div>
+
 </div>
 
 <style>
@@ -20,7 +30,6 @@
         box-shadow: 0 0 10px 0 var(--color-muted);
         transition: box-shadow 0.2s ease, border-color 0.2s ease;
         border: 2px solid transparent;
-        cursor: pointer;
     }
 
     .card-image {
@@ -29,11 +38,17 @@
         margin: auto;
         aspect-ratio: 1.618;
         object-fit: contain;
+        cursor: pointer;
     }
 
-    .card-content {
+    .card-header {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        gap: var(--sp-0-5);
+    }
+
+    .card-info {
+        flex: 1;
     }
 
     .card-title {
@@ -44,7 +59,7 @@
         line-height: 1.2;
     }
 
-    .card-medium {
+    .card-details {
         font-size: var(--sp-0-8);
         color: var(--color-text);
         opacity: 0.7;
@@ -52,7 +67,39 @@
         word-break: keep-all;
     }
 
-    .card-medium span {
+    .card-details span {
         display: inline-block;
+    }
+
+    .card-like {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        flex-shrink: 0;
+    }
+
+    .like-icon {
+        color: var(--color-text);
+        transition: all 0.1s ease-out;
+    }
+
+    .like-icon:hover {
+        color: var(--color-palette-red);
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 8px var(--color-palette-red));
+        animation: pulse 0.2s ease-in-out;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1.2); }
+        50% { transform: scale(1.4); }
+        100% { transform: scale(1.2); }
+    }
+
+    .like-counter {
+        font-size: var(--sp-0-8);
+        color: var(--color-text);
+        font-weight: 500;
     }
 </style>

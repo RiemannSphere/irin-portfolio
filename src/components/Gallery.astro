@@ -1,34 +1,42 @@
 ---
 import Card from "../components/Card.astro";
 
-// Define the gallery data
-const galleryItems = [
-    { title: "Golden Cat", image: "https://r2.hexe-irin.com/Irin_Golden_Cat_A5_40.small.webp", medium: "Acrylics on paper", dimensions: "A5", year: "2022" },
-    { title: "Psychedelic Pigeon", image: "https://r2.hexe-irin.com/Irin_Psychedelic_Pigeon_10x15_30.small.webp", medium: "Acrylic markers on wood board", dimensions: "10x15 cm", year: "2023" },
-    { title: "Chic Cat", image: "https://r2.hexe-irin.com/Irin_Chic_Cat_10x15_30.small.webp", medium: "Acrylics and acrylic markers on canvas board", dimensions: "10x15 cm", year: "2022" },
-    { title: "Baby Phoenix", image: "https://r2.hexe-irin.com/Irin_Baby_Phoenix_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "Jelly Fish", image: "https://r2.hexe-irin.com/Irin_Jelly_Fish_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "Scarab", image: "https://r2.hexe-irin.com/Irin_Scarab_8x10_15.small.webp", medium: "Acrylic markers on canvas board", dimensions: "8x10 cm", year: "2022" },
-    { title: "Rooster", image: "https://r2.hexe-irin.com/Irin_Rooster_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "Pumpkins", image: "https://r2.hexe-irin.com/Irin_Pumpkins_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "City Pigeon", image: "https://r2.hexe-irin.com/Irin_City_Pigeon_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { title: "Koi", image: "https://r2.hexe-irin.com/Irin_Koi_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" }
+interface GalleryItem {
+    id: number;
+    title: string;
+    image: string;
+    medium: string;
+    dimensions: string;
+    year: string;
+}
+
+const galleryItems: GalleryItem[] = [
+    { id: 1,title: "Golden Cat", image: "https://r2.hexe-irin.com/Irin_Golden_Cat_A5_40.small.webp", medium: "Acrylics on paper", dimensions: "A5", year: "2022" },
+    { id: 2, title: "Psychedelic Pigeon", image: "https://r2.hexe-irin.com/Irin_Psychedelic_Pigeon_10x15_30.small.webp", medium: "Acrylic markers on wood board", dimensions: "10x15 cm", year: "2023" },
+    { id: 3, title: "Chic Cat", image: "https://r2.hexe-irin.com/Irin_Chic_Cat_10x15_30.small.webp", medium: "Acrylics and acrylic markers on canvas board", dimensions: "10x15 cm", year: "2022" },
+    { id: 4, title: "Baby Phoenix", image: "https://r2.hexe-irin.com/Irin_Baby_Phoenix_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: 5, title: "Jelly Fish", image: "https://r2.hexe-irin.com/Irin_Jelly_Fish_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: 6, title: "Scarab", image: "https://r2.hexe-irin.com/Irin_Scarab_8x10_15.small.webp", medium: "Acrylic markers on canvas board", dimensions: "8x10 cm", year: "2022" },
+    { id: 7, title: "Rooster", image: "https://r2.hexe-irin.com/Irin_Rooster_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: 8, title: "Pumpkins", image: "https://r2.hexe-irin.com/Irin_Pumpkins_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: 9, title: "City Pigeon", image: "https://r2.hexe-irin.com/Irin_City_Pigeon_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: 10, title: "Koi", image: "https://r2.hexe-irin.com/Irin_Koi_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" }
 ];
+
 ---
 
-<div class="gallery" id="gallery">
+<div class="gallery">
     <div class="gallery-title">Gallery</div>
     
-    <!-- Loading spinner -->
     <div class="loading-spinner" id="loadingSpinner">
         <div class="spinner"></div>
         <p>Loading gallery...</p>
     </div>
     
-    <!-- Gallery content (hidden initially) -->
     <div class="gallery-images" id="galleryImages" style="display: none;">
         {galleryItems.map(item => (
-            <Card 
+            <Card
+                id={`gallery-item-${item.id}`}
                 title={item.title} 
                 image={item.image} 
                 medium={item.medium} 
@@ -37,53 +45,71 @@ const galleryItems = [
             />
         ))}
     </div>
+
+    <div class="gallery-item-modal" id="gallery-item-modal" style="display: none;">
+        <div class="gallery-item-modal-content">
+            <img id="gallery-item-modal-image" class="gallery-item-modal-image" src="" alt="">
+            <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </div>
+    </div>
 </div>
 
-<script define:vars={{ galleryItems }}>
-    // Preload all images and show gallery when ready
-    function preloadImages() {
-        // Extract image URLs from gallery items
-        const imageUrls = galleryItems.map(item => item.image);
+<script define:vars={{ galleryItems }} defer type="module">
 
+    function preloadImages() {
         const loadingSpinner = document.getElementById('loadingSpinner');
         const galleryImages = document.getElementById('galleryImages');
         
+        if (!loadingSpinner || !galleryImages) {
+            console.error('Loading spinner or gallery images not found');
+            return;
+        }
+
+        const imageUrls = galleryItems.map(item => item.image);
+
         let loadedCount = 0;
         const totalImages = imageUrls.length;
 
-        function onImageLoad() {
+        function incrementLoadedCount() {
             loadedCount++;
             if (loadedCount === totalImages) {
-                // All images loaded, show gallery
-                if (loadingSpinner) loadingSpinner.style.display = 'none';
-                if (galleryImages) galleryImages.style.display = 'grid';
+                loadingSpinner.style.display = 'none';
+                galleryImages.style.display = 'grid';
             }
         }
 
-        function onImageError() {
-            loadedCount++;
-            if (loadedCount === totalImages) {
-                // All images processed (even if some failed), show gallery
-                if (loadingSpinner) loadingSpinner.style.display = 'none';
-                if (galleryImages) galleryImages.style.display = 'grid';
-            }
-        }
-
-        // Preload each image
         imageUrls.forEach(url => {
             const img = new Image();
-            img.onload = onImageLoad;
-            img.onerror = onImageError;
+            img.onload = incrementLoadedCount;
+            img.onerror = incrementLoadedCount;
             img.src = url;
         });
     }
 
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', preloadImages);
-    } else {
-        preloadImages();
+    function openGalleryItemOnClick() {
+        const galleryItemsNodes = document.querySelectorAll('[id^="gallery-item-"]');
+        const closeIcon = document.getElementById('close-icon');
+        for (const itemNode of galleryItemsNodes) {
+            itemNode.addEventListener('click', () => {
+                const itemId = itemNode.id.split('-')[2];
+                const item = galleryItems.find(item => item.id === parseInt(itemId));
+                if (item) {
+                    const galleryItemModal = document.getElementById('gallery-item-modal');
+                    const galleryItemModalImage = document.getElementById('gallery-item-modal-image');
+                    galleryItemModalImage.src = item.image;
+                    galleryItemModal.style.display = 'block';
+                }
+            });
+        }
+
+        closeIcon.addEventListener('click', () => {
+            const galleryItemModal = document.getElementById('gallery-item-modal');
+            galleryItemModal.style.display = 'none';
+        });
     }
+
+    preloadImages();
+    openGalleryItemOnClick();
 </script>
 
 <style>
@@ -141,5 +167,42 @@ const galleryItems = [
     @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
+    }
+
+    .gallery-item-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease-in-out;
+        width: 100%;
+        height: 100%;
+    }
+
+    .gallery-item-modal-content {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .gallery-item-modal-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: var(--color-text-reverse);
+        cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 </style>
