@@ -44,12 +44,15 @@ export function getCookie<T extends Cookie>(request: Request, name: keyof T): T[
     return null;
 }
 
-function setCookie<T extends Cookie>(response: Response, name: keyof T, value: T[keyof T]): void {
+export function setCookie<T extends Cookie>(response: Response, name: keyof T, value: T[keyof T]): void {
     const parts = [`${String(name)}=${String(value)}`];
     parts.push("Path=/");
     parts.push("HttpOnly");
     parts.push("SameSite=Lax");
-    parts.push("Secure");
+    // TODO: uncomment for production
+    // parts.push("SameSite=None");
+    // parts.push("Domain=localhost");
+    // parts.push("Secure");
 
     response.headers.append("Set-Cookie", parts.join("; "));
 }

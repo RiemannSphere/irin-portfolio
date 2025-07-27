@@ -1,5 +1,19 @@
 import { z } from 'zod';
 
+export type Session = {
+    sessionId: string;
+    createdAt: string;
+    asn?: number;
+    country?: string;
+    city?: string;
+    latitude?: string;
+    longitude?: string;
+    postalCode?: string;
+    metroCode?: string;
+    region?: string;
+    timezone?: string;
+}
+
 export type LikesRequest = {
     objectType: 'artwork';
     objectId: string;
@@ -11,5 +25,3 @@ export const LikesRequestSchema = z.object({
     objectId: z.string(),
     likeType: z.enum(['like', 'unlike'])
 });
-
-export type LikesRequestValidated = z.infer<typeof LikesRequestSchema>;

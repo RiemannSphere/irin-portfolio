@@ -12,3 +12,23 @@ import Gallery from "../components/Gallery.astro";
 	<Gallery />
 	<Contact />
 </Layout>
+
+<script is:inline defer type="module">
+	import { getSession, getLikes, getLikesCounts } from '../../dist/services/api.service.js';
+    import { setLikedItems, addLikedItemsError, setIsLoading, setLikesCounts } from '../../dist/services/state.service.js';
+
+	setIsLoading(true);
+
+	getSession()
+		.then(() => getLikes())
+		.then(likedItems => setLikedItems(likedItems))
+		.then(() => getLikesCounts('artwork'))
+		.then(likesCounts => setLikesCounts(likesCounts))
+		.catch(error => {
+			console.error(error);
+			addLikedItemsError(error.toString());
+		})
+		.finally(() => {
+			setIsLoading(false);
+		});
+</script>

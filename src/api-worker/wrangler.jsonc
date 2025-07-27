@@ -1,14 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",  
-  "name": "likes-worker",
-  "main": "likes-worker.ts",
+  "name": "api-worker",
+  "main": "main.ts",
   "compatibility_date": "2025-02-04",
   "workers_dev": false,
   "observability": {
       "enabled": true
   },
   "route": {
-    "pattern": "hexe-irin.com/api/likes",
+    "pattern": "hexe-irin.com/api/*",
     "zone_name": "hexe-irin.com"
   },
   "kv_namespaces": [

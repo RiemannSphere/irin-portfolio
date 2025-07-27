@@ -14,15 +14,58 @@
                 <span>{medium}</span> • <span>{dimensions}</span> • <span>{year}</span>
             </p>
         </div>
-        <div class="card-like">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="like-icon">
+        <div id={`card-like-${id}`} class="card-like">
+            <svg id={`like-icon-${id}`} class="like-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
             </svg>
-            <span class="like-counter">5</span>
+            <span id={`like-counter-${id}`} class="like-counter">0</span>
         </div>
     </div>
-
 </div>
+
+<script define:vars={{ id }} is:inline defer type="module">
+    import { likedItemsState, addLikedItem, removeLikedItem } from '../../dist/services/state.service.js';
+    import { like, unlike } from '../../dist/services/api.service.js';
+
+    likedItemsState.subscribe(state => {
+        const cardLike = document.getElementById(`card-like-${id}`);
+        
+        if (state.errors.length > 0 || state.isLoading) {
+            cardLike.style.display = 'none';
+            return;
+        }
+
+        cardLike.style.display = 'flex';
+        
+        const likeIcon = document.getElementById(`like-icon-${id}`);
+        const likeCounter = document.getElementById(`like-counter-${id}`);
+
+        if (state.items.includes(id)) {
+            likeIcon.classList.add('liked');
+        }
+
+        if (!state.items.includes(id)) {
+            likeIcon.classList.remove('liked');
+        }
+
+        likeCounter.textContent = state.likesCounts[id]?.toString() || '0';
+    });
+
+    const likeIcon = document.getElementById(`like-icon-${id}`);
+
+    likeIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (likeIcon.classList.contains('liked')) {
+            likeIcon.classList.remove('liked');
+            removeLikedItem(id);
+            unlike(id);
+        } else {
+            likeIcon.classList.add('liked');
+            addLikedItem(id);
+            like(id);
+        }
+    });
+</script>
 
 <style>
     .card {
@@ -59,7 +102,6 @@
         }
     }
 
-    
     .card-image {
         width: 100%;
         min-width: 250px;
@@ -99,7 +141,7 @@
     }
 
     .card-like {
-        display: flex;
+        display: none; /* hide initially in case of errors */
         flex-direction: column;
         align-items: center;
         gap: 0;
@@ -112,19 +154,24 @@
         cursor: pointer;
     }
 
+    .like-icon.liked {
+        stroke: var(--color-palette-red);
+        fill: var(--color-palette-red);
+        animation: explode 0.2s ease-in-out;
+    }
+
     @media screen and (min-width: 768px) {
         .like-icon:hover {
             color: var(--color-palette-red);
             transform: scale(1.2);
             filter: drop-shadow(0 0 8px var(--color-palette-red));
-            animation: pulse 0.2s ease-in-out;
         }
     }
 
-    @keyframes pulse {
+    @keyframes explode {
         0% { transform: scale(1.2); }
-        50% { transform: scale(1.4); }
-        100% { transform: scale(1.2); }
+        50% { transform: scale(2.5); }
+        100% { transform: scale(1); }
     }
 
     .like-counter {

@@ -2,7 +2,7 @@
 import Card from "../components/Card.astro";
 
 interface GalleryItem {
-    id: number;
+    id: string;
     title: string;
     image: string;
     medium: string;
@@ -11,18 +11,17 @@ interface GalleryItem {
 }
 
 const galleryItems: GalleryItem[] = [
-    { id: 1,title: "Golden Cat", image: "https://r2.hexe-irin.com/Irin_Golden_Cat_A5_40.small.webp", medium: "Acrylics on paper", dimensions: "A5", year: "2022" },
-    { id: 2, title: "Psychedelic Pigeon", image: "https://r2.hexe-irin.com/Irin_Psychedelic_Pigeon_10x15_30.small.webp", medium: "Acrylic markers on wood board", dimensions: "10x15 cm", year: "2023" },
-    { id: 3, title: "Chic Cat", image: "https://r2.hexe-irin.com/Irin_Chic_Cat_10x15_30.small.webp", medium: "Acrylics and acrylic markers on canvas board", dimensions: "10x15 cm", year: "2022" },
-    { id: 4, title: "Baby Phoenix", image: "https://r2.hexe-irin.com/Irin_Baby_Phoenix_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { id: 5, title: "Jelly Fish", image: "https://r2.hexe-irin.com/Irin_Jelly_Fish_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { id: 6, title: "Scarab", image: "https://r2.hexe-irin.com/Irin_Scarab_8x10_15.small.webp", medium: "Acrylic markers on canvas board", dimensions: "8x10 cm", year: "2022" },
-    { id: 7, title: "Rooster", image: "https://r2.hexe-irin.com/Irin_Rooster_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { id: 8, title: "Pumpkins", image: "https://r2.hexe-irin.com/Irin_Pumpkins_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { id: 9, title: "City Pigeon", image: "https://r2.hexe-irin.com/Irin_City_Pigeon_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
-    { id: 10, title: "Koi", image: "https://r2.hexe-irin.com/Irin_Koi_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" }
+    { id: "artwork:1", title: "Golden Cat", image: "https://r2.hexe-irin.com/Irin_Golden_Cat_A5_40.small.webp", medium: "Acrylics on paper", dimensions: "A5", year: "2022" },
+    { id: "artwork:2", title: "Psychedelic Pigeon", image: "https://r2.hexe-irin.com/Irin_Psychedelic_Pigeon_10x15_30.small.webp", medium: "Acrylic markers on wood board", dimensions: "10x15 cm", year: "2023" },
+    { id: "artwork:3", title: "Chic Cat", image: "https://r2.hexe-irin.com/Irin_Chic_Cat_10x15_30.small.webp", medium: "Acrylics and acrylic markers on canvas board", dimensions: "10x15 cm", year: "2022" },
+    { id: "artwork:4", title: "Baby Phoenix", image: "https://r2.hexe-irin.com/Irin_Baby_Phoenix_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: "artwork:5", title: "Jelly Fish", image: "https://r2.hexe-irin.com/Irin_Jelly_Fish_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: "artwork:6", title: "Scarab", image: "https://r2.hexe-irin.com/Irin_Scarab_8x10_15.small.webp", medium: "Acrylic markers on canvas board", dimensions: "8x10 cm", year: "2022" },
+    { id: "artwork:7", title: "Rooster", image: "https://r2.hexe-irin.com/Irin_Rooster_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: "artwork:8", title: "Pumpkins", image: "https://r2.hexe-irin.com/Irin_Pumpkins_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: "artwork:9", title: "City Pigeon", image: "https://r2.hexe-irin.com/Irin_City_Pigeon_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" },
+    { id: "artwork:10", title: "Koi", image: "https://r2.hexe-irin.com/Irin_Koi_10x10_25.small.webp", medium: "Acrylic markers on canvas board", dimensions: "10x10 cm", year: "2022" }
 ];
-
 ---
 
 <div class="gallery">
@@ -36,7 +35,7 @@ const galleryItems: GalleryItem[] = [
     <div class="gallery-images" id="galleryImages" style="display: none;">
         {galleryItems.map(item => (
             <Card
-                id={`gallery-item-${item.id}`}
+                id={item.id}
                 title={item.title} 
                 image={item.image} 
                 medium={item.medium} 
@@ -54,8 +53,7 @@ const galleryItems: GalleryItem[] = [
     </div>
 </div>
 
-<script define:vars={{ galleryItems }} defer type="module">
-
+<script define:vars={{ galleryItems }} is:inline defer type="module">
     function preloadImages() {
         const loadingSpinner = document.getElementById('loadingSpinner');
         const galleryImages = document.getElementById('galleryImages');
@@ -87,12 +85,11 @@ const galleryItems: GalleryItem[] = [
     }
 
     function openGalleryItemOnClick() {
-        const galleryItemsNodes = document.querySelectorAll('[id^="gallery-item-"]');
+        const galleryItemsNodes = document.querySelectorAll('[id^="artwork:"]');
         const closeIcon = document.getElementById('close-icon');
         for (const itemNode of galleryItemsNodes) {
             itemNode.addEventListener('click', () => {
-                const itemId = itemNode.id.split('-')[2];
-                const item = galleryItems.find(item => item.id === parseInt(itemId));
+                const item = galleryItems.find(item => item.id === itemNode.id);
                 if (item) {
                     const galleryItemModal = document.getElementById('gallery-item-modal');
                     const galleryItemModalImage = document.getElementById('gallery-item-modal-image');
